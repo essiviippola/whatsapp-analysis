@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import re
 import regex
 import emoji
@@ -94,13 +95,19 @@ def preprocess_data(df):
     # Add 1 to column messages to enable easier summarization
     df['message_count'] = 1
 
-    # Number of letters and words in a message
+    # Add a marker for media messages
+    df['media_count'] = (df['message'] == '<Media jätettiin pois>').astype(int)
+
+    # Number of letters and words in a message, except for media messages
     df['letter_count'] = df['message'].apply(lambda s: len(s))
+    df.loc[df['media_count'] > 0, 'letter_count'] = None
     df['word_count'] = df['message'].apply(lambda s: len(s.split(' ')))
+    df.loc[df['media_count'] > 0, 'word_count'] = None
 
     # Add emojis and the number of emojis to dataframe
     df['emoji'] = df['message'].apply(find_emojis)
     df['emoji_count'] = df['emoji'].str.len()
+    df.loc[df['media_count'] > 0, 'emoji_count'] = None
     df['message_with_emoji'] = df['emoji_count'] > 0
 
     # Add links and the number of links
@@ -108,8 +115,21 @@ def preprocess_data(df):
     df['link_count'] = df['link'].str.len()
     df['message_with_link'] = df['link_count'] > 0
 
-    # Add a marker for media messages
-    df['media_count'] = df['message'] == '<Media jätettiin pois>'
+    # Add weekday
+    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    df['weekday'] = df['date'].dt.weekday.apply(lambda x: weekdays[x])
+    df['weekend'] = df['weekday'].isin(['Saturday', 'Sunday'])
+
+    # Add hour and hour group
+    df['hour'] = df['time'].str.split('.').str[0].astype(int)
+
+    conditions = [
+        (df['hour'] < 6), 
+        ((df['hour'] >= 6) & (df['hour'] < 12)),
+        ((df['hour'] >= 12) & (df['hour'] < 18)),
+        (df['hour'] >= 18)]
+    values = ['0-5', '6-11', '12-17', '18-23']
+    df['hour_group'] = np.select(conditions, values)
 
     return df
 
