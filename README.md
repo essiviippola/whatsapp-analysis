@@ -1,6 +1,6 @@
-# whatsapp-analysis
-Whatsapp group chat analysis
+# Whatsapp analysis
 
+The scripts on this repository can be used to extract statistics from Whatsapp group chats. The main application was to analyze messages to celebrate our group chat's ("Tuuli Nousee") 4th anniversary. 
 
 ## Dataset
 
@@ -34,6 +34,16 @@ weekday | char | Weekday of the message in English
 weekend | bool | Indicator for messages sent on a weekend
 hour | num | Hour when the message was sent
 hour_group | char | Hour group, split by 6 hours
+
+## Analysis
+
+The analysis contains the following sections:
+
+- Messages by author
+- Messages by date and time
+- Emojis
+- Links
+- Message contents
 
 ## Sources
 
