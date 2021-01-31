@@ -1,10 +1,10 @@
 # Whatsapp analysis
 
-The scripts on this repository can be used to extract statistics from Whatsapp group chats. The main application was to analyze messages to celebrate our group chat's ("Tuuli Nousee") 4th anniversary. 
+The scripts on this repository can be used to extract statistics from Whatsapp group chats as well generate text based on Whatsapp messages. The main application was to analyze messages to celebrate our group chat's ("Tuuli Nousee") 4th anniversary.
 
 ## Dataset
 
-Data comprise of a CSV file of messages exported from Whatsapp. Each row represents one message.
+Data comprise of a CSV file of messages exported from Whatsapp. Each row represents one message. Messages are written primarily in Finnish with some English messages.
 
 The data contains the following fields:
 
@@ -44,6 +44,10 @@ The analysis contains the following sections:
 - Emojis
 - Links
 - Message contents
+
+## Text generation
+
+The first attempt at text generation uses an LSTM recurrent neural network to generate text character-by-characted based on an input of 100 characters. The final goal is to build a chatbot thats answers are typical to our group chat.
 
 ## Sources
 
