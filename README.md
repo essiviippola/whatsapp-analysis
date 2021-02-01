@@ -47,9 +47,14 @@ The analysis contains the following sections:
 
 ## Text generation
 
-The first attempt at text generation uses an LSTM recurrent neural network to generate text character-by-characted based on an input of 100 characters. The final goal is to build a chatbot thats answers are typical to our group chat.
+The final goal is to build a chatbot generating answers like the ones typically sent in out group chat.
+
+The first attempt at text generation uses an LSTM recurrent neural network to generate text character-by-characted based on an input of 100 characters. The second attempt uses Markov chains with back-off to generate text word-by-word. Word-by-word generation works seemingly better but is not much better than a 'bag of words' approach. 
+
+The next step is to try out an approach utilizing the chat-format of the training data, as the final goal is to generate whatsapp message type texts.
 
 ## Sources
 
 - https://github.com/MaartenGr/soan
 - https://medium.com/towards-artificial-intelligence/whatsapp-group-chat-analysis-using-python-and-plotly-89bade2bc382
+- https://blog.dataiku.com/2016/10/08/machine-learning-markov-chains-generate-clinton-trump-quotes
