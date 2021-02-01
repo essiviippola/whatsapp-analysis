@@ -4,7 +4,7 @@ The scripts on this repository can be used to extract statistics from Whatsapp g
 
 ## Dataset
 
-Data comprise of a CSV file of messages exported from Whatsapp. Each row represents one message. Messages are written primarily in Finnish with some English messages.
+Data comprise of a CSV file of messages exported from Whatsapp. Each row represents one message. Messages are written primarily in Finnish with some English here and there.
 
 The data contains the following fields:
 
