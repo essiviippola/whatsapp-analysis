@@ -49,9 +49,27 @@ The analysis contains the following sections:
 
 The final goal is to build a chatbot generating answers like the ones typically sent in out group chat.
 
-The first attempt at text generation uses an LSTM recurrent neural network to generate text character-by-characted based on an input of 100 characters. The second attempt uses Markov chains with back-off to generate text word-by-word. Word-by-word generation works seemingly better but is not much better than a 'bag of words' approach. 
+The first attempt at text generation uses an *LSTM recurrent neural network* to generate text character-by-characted based on an input of 100 characters. The output does not make  much sense but the model was able to learn some characteristics of spoken Finnish.
 
-The next step is to try out an approach utilizing the chat-format of the training data, as the final goal is to generate whatsapp message type texts.
+```
+Seed: "n maksaa softapivitykset? 0e huollon yhteydess no sit 5/5 iha jees toki huolto oli 169e mut ei ny ka"
+Result: "ikki tarvii kaikki tiet et se on koko tietoturvaittu kaikki tiet et se on kyll tiet et se on koko si"
+```
+
+The second attempt uses *Markov chains* with back-off to generate text word-by-word. Word-by-word generation works seemingly better but is not much better than a 'bag of words' approach. The model can only use words present in the training data.
+
+```
+Seed: "mitä tehdään lauantaina"
+Result: "käydä kyselemässä että opin elämästä kun 2/9 * oblivion music television näky, mut ens viikon perjantaina 
+saadaan ihmiset pelkää mikroja😃 Tää puukoriste on kai virallinen asiointikieli on semmonen autossa ja luot yhteyden 
+ottamisest apreeseensissä eikä edes teamssii pyytäny jälkikäteen usb voi ydinvoimalais ni sitten just nyt luet siellä 
+kermaviiliämpäreitä ?"
+```
+
+## Ideas for the next steps
+
+- Using a pretrained neural network (maybe FinBERT if possible)
+- Utilizing the chat-format of the training data (as the final goal is to generate whatsapp message type texts)
 
 ## Sources
 
